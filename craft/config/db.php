@@ -10,7 +10,7 @@
 return array(
 
 	// The database server name or IP address. Usually this is 'localhost' or '127.0.0.1'.
-	'server' => 'localhost',
+	'server' => '127.0.0.1',
 
 	// The database username to connect with.
 	'user' => 'root',

@@ -52,8 +52,22 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: ['gruntfile.js', 'src/js/main.js']
-        }
+        },
+        penthouse: {
+          extract : {
+              outfile : './craft/templates/_includes/penthouse.css',
+              // outfile : './public/assets/css/penthouse.css',
+              css : './public/assets/css/happylager.css',
+              url : 'http://dev.happylager.com/',
+              width : 1300,
+              height : 900
+          },
+        },
+
+
     });
+
+
 
     //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-sass');
@@ -62,14 +76,18 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-imageoptim');
+    grunt.loadNpmTasks('grunt-criticalcss');
+    grunt.loadNpmTasks('grunt-penthouse');
+
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
     // Optimize images.
     grunt.registerTask('img', ['imageoptim']);
+    grunt.registerTask('crit', ['penthouse']);
 
     // Default task(s).
-    grunt.registerTask('default', ['sass','concat', 'uglify', 'jshint', 'watch']);
+    grunt.registerTask('default', ['sass','concat', 'uglify', 'jshint', 'watch', 'penthouse']);
 
 };

@@ -13,7 +13,8 @@ return array(
 		'environmentVariables' => array(
 			'assetsBaseUrl' => '/assets',
 			'assetsBasePath' => './assets',
-		)
+		),
+		'siteUrl' => "http://{$_SERVER['SERVER_NAME']}/",
 	),
 
 	// Give CodeKit a custom site URL

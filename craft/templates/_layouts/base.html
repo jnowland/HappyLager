@@ -48,6 +48,7 @@
  #   * `foot`: This block is placed directly before the closing `</body>` tag.
  #             Child templates can use this to include Javascript files, etc.
 -#}
+{% set cssupdate = '20150313' %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
@@ -57,9 +58,60 @@
 		<meta charset="utf-8">
 		<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/fonts/stylesheet.css">
-		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/css/happylager.css">
+
+		<script>
+			document.cookie = 'csscached={{ cssupdate }};expires="Tue, 19 Jan 2038 03:14:07 GMT";path=/';
+		</script>
+
+
+		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/fonts/stylesheet.{{ cssupdate }}.css">
+		<!-- test -->
+	{% if craft.lj_cookies.get('csscached') == cssupdate %}
+		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/css/happylager.{{ cssupdate }}.css">
+	{% else %}
+	<style>
+		{% include '_includes/penthouse.css' %}
+	</style>
+	<script>
+	(function (win, doc) {
+	    'use strict';
+	    function loadCSS(href) {
+	        var ss = doc.createElement('link'),
+	            ref = doc.getElementsByTagName('script')[0],
+	            sheets = doc.styleSheets;
+	        ss.rel = 'stylesheet';
+	        ss.href = href;
+	        ss.media = 'only x';
+	        ref.parentNode.insertBefore(ss, ref);
+	        function toggleMedia() {
+	            var defined,
+	                i;
+	            for (i = 0; i < sheets.length; i = i + 1) {
+	                if (sheets[i].href && sheets[i].href.indexOf(ss.href) > -1) {
+	                    defined = true;
+	                }
+	            }
+	            if (defined) {
+	                ss.media = 'all';
+	            } else {
+	                win.setTimeout(toggleMedia);
+	            }
+	        }
+	        toggleMedia();
+	        return ss;
+	    }
+	    loadCSS('/assets/fonts/happylager.{{ cssupdate }}.css');
+	    doc.cookie = 'csscached={{ cssupdate }};expires="Tue, 19 Jan 2038 03:14:07 GMT";path=/';
+	}(this, this.document));
+	</script>
+	<noscript>
+		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/fonts/stylesheet.{{ cssupdate }}.css">
+		<link rel="stylesheet" type="text/css" href="{{ siteUrl }}assets/css/happylager.{{ cssupdate }}.css">
+	</noscript>
+	{% endif %}
+
 	{% endblock %}
+
 </head>
 <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
 	{% block body %}{% endblock %}

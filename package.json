@@ -1,14 +1,18 @@
 {
-    "name": "HappyLager",
-    "version": "0.0.1",
-    "private": true,
-    "devDependencies": {
-        "grunt": "latest",
-        "grunt-contrib-sass": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-contrib-concat": "latest",
-        "grunt-contrib-uglify": "0.3.2",
-        "grunt-contrib-watch": "latest",
-        "grunt-imageoptim": "latest"
-    }
+  "name": "HappyLager",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "critical": "^0.1.6",
+    "del": "^0.1.1",
+    "grunt": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-uglify": "0.3.2",
+    "grunt-contrib-watch": "latest",
+    "grunt-criticalcss": "^0.5.0",
+    "grunt-imageoptim": "latest",
+    "grunt-penthouse": "^0.2.1"
+  }
 }
