@@ -56,7 +56,6 @@ module.exports = function(grunt) {
         penthouse: {
           extract : {
               outfile : './craft/templates/_includes/penthouse.css',
-              // outfile : './public/assets/css/penthouse.css',
               css : './public/assets/css/happylager.css',
               url : 'http://dev.happylager.com/',
               width : 1300,
@@ -68,7 +67,6 @@ module.exports = function(grunt) {
     });
 
 
-
     //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -76,7 +74,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-imageoptim');
-    grunt.loadNpmTasks('grunt-criticalcss');
     grunt.loadNpmTasks('grunt-penthouse');
 
 
